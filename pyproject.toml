@@ -1,6 +1,46 @@
-[build-system]
-requires = [
-    "setuptools>=42",
-    "wheel"
+
+[tool.poetry]
+name = "patool"
+version = "1.12"
+description = "portable archive file manager"
+authors = ["Bastian Kleineidam <bastian.kleineidam@web.de>"]
+license = "GPL-3.0-or-later"
+readme = "README.md"
+homepage = "http://wummel.github.io/patool/"
+repository = "https://github.com/wummel/patool"
+keywords = ["archiver", "archive", "compression", "commandline", "manager"]
+classifiers = [
+    'Environment :: Console',
+    'Topic :: System :: Archiving',
+    'Development Status :: 5 - Production/Stable',
+    'Operating System :: OS Independent',
 ]
-build-backend = "setuptools.build_meta"
+packages = [
+    { include = "patool" },
+    { include = "patoolib" },
+]
+include = [
+    "doc",
+    "scripts",
+    "tests",
+    "Makefile",
+    "COPYING",
+    "*.bash-completion",
+]
+exclude = [
+    "doc/web",
+    "doc/icon"
+]
+
+[tool.poetry.scripts]
+patool = 'patool.patool:main'
+
+[tool.poetry.dependencies]
+python = "^3.5"
+importlib-metadata = { version = ">=1", python = "<3.8" }
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
